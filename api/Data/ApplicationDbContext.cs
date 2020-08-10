@@ -1,6 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using DefinitiveEdition.Api.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DefinitiveEdition.Api.Data
@@ -11,5 +9,8 @@ namespace DefinitiveEdition.Api.Data
             : base(options)
         {
         }
+
+        public DbSet<Series> Series { get; set; }
+        public DbSet<FeatureType> FeatureType { get; set; }
     }
 }
