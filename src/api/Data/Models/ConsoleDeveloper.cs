@@ -1,8 +1,8 @@
 namespace DefinitiveEdition.Api.Data.Models
 {
-    public class FeatureType
+    public class ConsoleDeveloper
     {
-        public int FeatureTypeId { get; set; }
+        public int ConsoleDeveloperId { get; set; }
         
         public string Name { get; set; }
     }
