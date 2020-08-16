@@ -1,0 +1,55 @@
+SQL DB Tables
+Once you have built all of your models, use this command to apply the initial migration.
+
+$ dotnet ef migrations add InitialCreate <That is the name of your migration>
+
+Games:
+	Id : Guid
+	Title : string
+	OrginalReleaseDate: Date
+	SeriesId : Guid
+	
+GamePorts:
+	Id : Guid
+	GameId : Guid
+	ConsoleId: Guid
+	IsNameDifferent : bool (true if Title Name is different than Game : Title)
+	Title : string (Not Required if IsNameDifferent == false)
+	
+PortFeatures:
+	Id: Guid
+	GameId : Guid
+	GamePortId : Guid
+	FeatureTypeId: short
+	
+FeatureTypes:
+	Id : short
+	Name : string (the only ones that will be available are Pro, Con, Neutral)
+	
+Series:
+	Id: Guid
+	Name : string
+	InitialReleaseDate : Date
+	Description : string
+	
+Consoles:
+	Id: Guid
+	Name: string
+	Maker: string
+	InitialReleaseDate: DateTime
+
+	
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+/////                                                                        /////
+///// Apply These Migrations After You Are Done With The Initial Schtuff     /////
+/////                                                                        /////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+
+Users:
+
+Reviews:
+
+PortVotes:

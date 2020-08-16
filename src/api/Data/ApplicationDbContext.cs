@@ -11,6 +11,6 @@ namespace DefinitiveEdition.Api.Data
         }
 
         public DbSet<Series> Series { get; set; }
-        public DbSet<FeatureType> FeatureType { get; set; }
+        public DbSet<FeatureType> FeatureTypes { get; set; }
     }
 }
