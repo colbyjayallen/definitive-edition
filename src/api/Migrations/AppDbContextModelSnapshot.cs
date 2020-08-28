@@ -21,7 +21,7 @@ namespace DefinitiveEdition.Api.Migrations
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.ConsoleDeveloper", b =>
                 {
-                    b.Property<int>("ConsoleDeveloperId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -29,21 +29,21 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ConsoleDeveloperId");
+                    b.HasKey("Id");
 
                     b.ToTable("ConsoleDeveloper");
 
                     b.HasData(
                         new
                         {
-                            ConsoleDeveloperId = 1,
+                            Id = 1,
                             Name = "Nintendo"
                         });
                 });
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.FeatureType", b =>
                 {
-                    b.Property<int>("FeatureTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -51,31 +51,31 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("FeatureTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("FeatureType");
 
                     b.HasData(
                         new
                         {
-                            FeatureTypeId = 1,
+                            Id = 1,
                             Name = "Pro"
                         },
                         new
                         {
-                            FeatureTypeId = 2,
+                            Id = 2,
                             Name = "Neutral"
                         },
                         new
                         {
-                            FeatureTypeId = 3,
+                            Id = 3,
                             Name = "Con"
                         });
                 });
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.Game", b =>
                 {
-                    b.Property<Guid>("GameId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -88,7 +88,7 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<Guid>("SeriesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("GameId");
+                    b.HasKey("Id");
 
                     b.HasIndex("SeriesId");
 
@@ -97,16 +97,16 @@ namespace DefinitiveEdition.Api.Migrations
                     b.HasData(
                         new
                         {
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
+                            Id = new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"),
                             InitialReleaseDate = new DateTime(2000, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "The Legend of Zelda - Majora's Mask",
-                            SeriesId = new Guid("dd11a88d-3348-49e3-8fc2-fe018d940be3")
+                            SeriesId = new Guid("1af5b35c-4c32-4a5d-ab3a-daeb5ec78e21")
                         });
                 });
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.GameConsole", b =>
                 {
-                    b.Property<Guid>("GameConsoleId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -119,7 +119,7 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("GameConsoleId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ConsoleDeveloperId");
 
@@ -128,14 +128,14 @@ namespace DefinitiveEdition.Api.Migrations
                     b.HasData(
                         new
                         {
-                            GameConsoleId = new Guid("24040a96-0264-4911-b9e1-1a47375d913a"),
+                            Id = new Guid("9fc6465c-c8c4-4496-9040-d5faa7ce71a2"),
                             ConsoleDeveloperId = 1,
                             InitialReleaseDate = new DateTime(1996, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "64"
                         },
                         new
                         {
-                            GameConsoleId = new Guid("3e4ed385-0e49-4758-ab38-86dae54eae63"),
+                            Id = new Guid("e6ac0412-b8d0-43ce-8d3a-b3d80f70db75"),
                             ConsoleDeveloperId = 1,
                             InitialReleaseDate = new DateTime(2011, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "3DS"
@@ -144,7 +144,7 @@ namespace DefinitiveEdition.Api.Migrations
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.GamePort", b =>
                 {
-                    b.Property<Guid>("GamePortId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -166,7 +166,7 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<DateTime?>("ReleaseDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("GamePortId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GameConsoleId");
 
@@ -177,17 +177,17 @@ namespace DefinitiveEdition.Api.Migrations
                     b.HasData(
                         new
                         {
-                            GamePortId = new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b"),
-                            GameConsoleId = new Guid("24040a96-0264-4911-b9e1-1a47375d913a"),
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
+                            Id = new Guid("fdb1993e-bca6-4961-9426-18a8f680c730"),
+                            GameConsoleId = new Guid("9fc6465c-c8c4-4496-9040-d5faa7ce71a2"),
+                            GameId = new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"),
                             IsInitialRelease = true,
                             IsSameName = true
                         },
                         new
                         {
-                            GamePortId = new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e"),
-                            GameConsoleId = new Guid("3e4ed385-0e49-4758-ab38-86dae54eae63"),
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
+                            Id = new Guid("ef2d234e-e70f-400b-850a-2d460129e563"),
+                            GameConsoleId = new Guid("e6ac0412-b8d0-43ce-8d3a-b3d80f70db75"),
+                            GameId = new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"),
                             IsInitialRelease = false,
                             IsSameName = false,
                             PortName = "The Legend of Zelda - Majora's Mask 3D",
@@ -197,7 +197,7 @@ namespace DefinitiveEdition.Api.Migrations
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.PortFeature", b =>
                 {
-                    b.Property<Guid>("PortFeatureId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -210,17 +210,12 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<int>("FeatureTypeId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("GamePortId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("PortFeatureId");
+                    b.HasKey("Id");
 
                     b.HasIndex("FeatureTypeId");
-
-                    b.HasIndex("GameId");
 
                     b.HasIndex("GamePortId");
 
@@ -229,54 +224,49 @@ namespace DefinitiveEdition.Api.Migrations
                     b.HasData(
                         new
                         {
-                            PortFeatureId = new Guid("422b4e25-42d3-466a-9f7e-c9fda861e4cc"),
+                            Id = new Guid("bbb679fc-0941-4b76-b596-7c12420c4896"),
                             Description = "Swimming speed while wearing the Zora mask is automatically fast without needing to use magic",
                             Feature = "Fast Zora Swimming",
                             FeatureTypeId = 1,
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
-                            GamePortId = new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b")
+                            GamePortId = new Guid("fdb1993e-bca6-4961-9426-18a8f680c730")
                         },
                         new
                         {
-                            PortFeatureId = new Guid("46b805cf-01ad-4ad8-85b1-4958fcd93f33"),
+                            Id = new Guid("5fd825af-56cf-4343-81ee-f4372f2c38a1"),
                             Description = "The original release of Majora's Mask capped out at a framerate of 20 FPS. Little hard on the eyes at first",
                             Feature = "20 FPS",
                             FeatureTypeId = 3,
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
-                            GamePortId = new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b")
+                            GamePortId = new Guid("fdb1993e-bca6-4961-9426-18a8f680c730")
                         },
                         new
                         {
-                            PortFeatureId = new Guid("cb4e8da2-c16b-4d3e-992f-1d75e2805205"),
+                            Id = new Guid("0c66e103-39d1-4c84-87d8-7cb71d597ada"),
                             Description = "The 3DS port runs a bit smoother at 30 FPS, which is easier on the eyes",
                             Feature = "30 FPS",
                             FeatureTypeId = 1,
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
-                            GamePortId = new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e")
+                            GamePortId = new Guid("ef2d234e-e70f-400b-850a-2d460129e563")
                         },
                         new
                         {
-                            PortFeatureId = new Guid("051cbbd5-3dc9-44b8-88a1-30c372d1f975"),
+                            Id = new Guid("7b46ba9c-52e2-4ec8-a971-14e7bb8c22f7"),
                             Description = "Some purists may complain that this takes away from the original, the Song of Double Time can take you to a specific time of the current day you are on.",
                             Feature = "Improved Song of Double Time",
                             FeatureTypeId = 2,
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
-                            GamePortId = new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e")
+                            GamePortId = new Guid("ef2d234e-e70f-400b-850a-2d460129e563")
                         },
                         new
                         {
-                            PortFeatureId = new Guid("4a3d4cfb-c5b2-4e27-bfdf-4b9024413907"),
+                            Id = new Guid("e43a0874-843f-4a7b-a5b8-62aa06cb7770"),
                             Description = "Without using Magic, the Zora swimming speed will seem like you are crawling through the ocean. Fan patches have been made to patch this though",
                             Feature = "Slow Zora Swimming",
                             FeatureTypeId = 3,
-                            GameId = new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"),
-                            GamePortId = new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e")
+                            GamePortId = new Guid("ef2d234e-e70f-400b-850a-2d460129e563")
                         });
                 });
 
             modelBuilder.Entity("DefinitiveEdition.Api.Data.Models.Series", b =>
                 {
-                    b.Property<Guid>("SeriesId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -289,14 +279,14 @@ namespace DefinitiveEdition.Api.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SeriesId");
+                    b.HasKey("Id");
 
                     b.ToTable("Series");
 
                     b.HasData(
                         new
                         {
-                            SeriesId = new Guid("dd11a88d-3348-49e3-8fc2-fe018d940be3"),
+                            Id = new Guid("1af5b35c-4c32-4a5d-ab3a-daeb5ec78e21"),
                             Description = "Save the Princess and Hyrule from Ganon sometimes. Fix me up later....",
                             InitialReleaseDate = new DateTime(1986, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "The Legend of Zelda"
@@ -341,12 +331,6 @@ namespace DefinitiveEdition.Api.Migrations
                     b.HasOne("DefinitiveEdition.Api.Data.Models.FeatureType", "FeatureType")
                         .WithMany()
                         .HasForeignKey("FeatureTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DefinitiveEdition.Api.Data.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

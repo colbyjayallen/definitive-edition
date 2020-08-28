@@ -4,7 +4,7 @@ namespace DefinitiveEdition.Api.Data.Models
 {
     public class GamePort
     {
-        public Guid GamePortId { get; set; }
+        public Guid Id { get; set; }
         public bool IsInitialRelease { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public bool IsSameName { get; set; }

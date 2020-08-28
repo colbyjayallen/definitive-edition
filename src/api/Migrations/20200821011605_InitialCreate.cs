@@ -11,59 +11,59 @@ namespace DefinitiveEdition.Api.Migrations
                 name: "ConsoleDeveloper",
                 columns: table => new
                 {
-                    ConsoleDeveloperId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConsoleDeveloper", x => x.ConsoleDeveloperId);
+                    table.PrimaryKey("PK_ConsoleDeveloper", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FeatureType",
                 columns: table => new
                 {
-                    FeatureTypeId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FeatureType", x => x.FeatureTypeId);
+                    table.PrimaryKey("PK_FeatureType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Series",
                 columns: table => new
                 {
-                    SeriesId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     InitialReleaseDate = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Series", x => x.SeriesId);
+                    table.PrimaryKey("PK_Series", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "GameConsole",
                 columns: table => new
                 {
-                    GameConsoleId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     InitialReleaseDate = table.Column<DateTime>(nullable: false),
                     ConsoleDeveloperId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GameConsole", x => x.GameConsoleId);
+                    table.PrimaryKey("PK_GameConsole", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GameConsole_ConsoleDeveloper_ConsoleDeveloperId",
                         column: x => x.ConsoleDeveloperId,
                         principalTable: "ConsoleDeveloper",
-                        principalColumn: "ConsoleDeveloperId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -71,19 +71,19 @@ namespace DefinitiveEdition.Api.Migrations
                 name: "Game",
                 columns: table => new
                 {
-                    GameId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     InitialReleaseDate = table.Column<DateTime>(nullable: false),
                     SeriesId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Game", x => x.GameId);
+                    table.PrimaryKey("PK_Game", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Game_Series_SeriesId",
                         column: x => x.SeriesId,
                         principalTable: "Series",
-                        principalColumn: "SeriesId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -91,7 +91,7 @@ namespace DefinitiveEdition.Api.Migrations
                 name: "GamePort",
                 columns: table => new
                 {
-                    GamePortId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     IsInitialRelease = table.Column<bool>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: true),
                     IsSameName = table.Column<bool>(nullable: false),
@@ -101,18 +101,18 @@ namespace DefinitiveEdition.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GamePort", x => x.GamePortId);
+                    table.PrimaryKey("PK_GamePort", x => x.Id);
                     table.ForeignKey(
                         name: "FK_GamePort_GameConsole_GameConsoleId",
                         column: x => x.GameConsoleId,
                         principalTable: "GameConsole",
-                        principalColumn: "GameConsoleId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_GamePort_Game_GameId",
                         column: x => x.GameId,
                         principalTable: "Game",
-                        principalColumn: "GameId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -120,44 +120,37 @@ namespace DefinitiveEdition.Api.Migrations
                 name: "PortFeature",
                 columns: table => new
                 {
-                    PortFeatureId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Feature = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    GameId = table.Column<Guid>(nullable: false),
                     GamePortId = table.Column<Guid>(nullable: false),
                     FeatureTypeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PortFeature", x => x.PortFeatureId);
+                    table.PrimaryKey("PK_PortFeature", x => x.Id);
                     table.ForeignKey(
                         name: "FK_PortFeature_FeatureType_FeatureTypeId",
                         column: x => x.FeatureTypeId,
                         principalTable: "FeatureType",
-                        principalColumn: "FeatureTypeId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PortFeature_Game_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Game",
-                        principalColumn: "GameId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PortFeature_GamePort_GamePortId",
                         column: x => x.GamePortId,
                         principalTable: "GamePort",
-                        principalColumn: "GamePortId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "ConsoleDeveloper",
-                columns: new[] { "ConsoleDeveloperId", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[] { 1, "Nintendo" });
 
             migrationBuilder.InsertData(
                 table: "FeatureType",
-                columns: new[] { "FeatureTypeId", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     { 1, "Pro" },
@@ -167,44 +160,44 @@ namespace DefinitiveEdition.Api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Series",
-                columns: new[] { "SeriesId", "Description", "InitialReleaseDate", "Name" },
-                values: new object[] { new Guid("dd11a88d-3348-49e3-8fc2-fe018d940be3"), "Save the Princess and Hyrule from Ganon sometimes. Fix me up later....", new DateTime(1986, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Legend of Zelda" });
+                columns: new[] { "Id", "Description", "InitialReleaseDate", "Name" },
+                values: new object[] { new Guid("1af5b35c-4c32-4a5d-ab3a-daeb5ec78e21"), "Save the Princess and Hyrule from Ganon sometimes. Fix me up later....", new DateTime(1986, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Legend of Zelda" });
 
             migrationBuilder.InsertData(
                 table: "Game",
-                columns: new[] { "GameId", "InitialReleaseDate", "Name", "SeriesId" },
-                values: new object[] { new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new DateTime(2000, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Legend of Zelda - Majora's Mask", new Guid("dd11a88d-3348-49e3-8fc2-fe018d940be3") });
+                columns: new[] { "Id", "InitialReleaseDate", "Name", "SeriesId" },
+                values: new object[] { new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"), new DateTime(2000, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Legend of Zelda - Majora's Mask", new Guid("1af5b35c-4c32-4a5d-ab3a-daeb5ec78e21") });
 
             migrationBuilder.InsertData(
                 table: "GameConsole",
-                columns: new[] { "GameConsoleId", "ConsoleDeveloperId", "InitialReleaseDate", "Name" },
-                values: new object[] { new Guid("3e4ed385-0e49-4758-ab38-86dae54eae63"), 1, new DateTime(2011, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "3DS" });
+                columns: new[] { "Id", "ConsoleDeveloperId", "InitialReleaseDate", "Name" },
+                values: new object[] { new Guid("e6ac0412-b8d0-43ce-8d3a-b3d80f70db75"), 1, new DateTime(2011, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "3DS" });
 
             migrationBuilder.InsertData(
                 table: "GameConsole",
-                columns: new[] { "GameConsoleId", "ConsoleDeveloperId", "InitialReleaseDate", "Name" },
-                values: new object[] { new Guid("24040a96-0264-4911-b9e1-1a47375d913a"), 1, new DateTime(1996, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "64" });
+                columns: new[] { "Id", "ConsoleDeveloperId", "InitialReleaseDate", "Name" },
+                values: new object[] { new Guid("9fc6465c-c8c4-4496-9040-d5faa7ce71a2"), 1, new DateTime(1996, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "64" });
 
             migrationBuilder.InsertData(
                 table: "GamePort",
-                columns: new[] { "GamePortId", "GameConsoleId", "GameId", "IsInitialRelease", "IsSameName", "PortName", "ReleaseDate" },
-                values: new object[] { new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b"), new Guid("24040a96-0264-4911-b9e1-1a47375d913a"), new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), true, true, null, null });
+                columns: new[] { "Id", "GameConsoleId", "GameId", "IsInitialRelease", "IsSameName", "PortName", "ReleaseDate" },
+                values: new object[] { new Guid("fdb1993e-bca6-4961-9426-18a8f680c730"), new Guid("9fc6465c-c8c4-4496-9040-d5faa7ce71a2"), new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"), true, true, null, null });
 
             migrationBuilder.InsertData(
                 table: "GamePort",
-                columns: new[] { "GamePortId", "GameConsoleId", "GameId", "IsInitialRelease", "IsSameName", "PortName", "ReleaseDate" },
-                values: new object[] { new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e"), new Guid("3e4ed385-0e49-4758-ab38-86dae54eae63"), new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), false, false, "The Legend of Zelda - Majora's Mask 3D", new DateTime(2015, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "GameConsoleId", "GameId", "IsInitialRelease", "IsSameName", "PortName", "ReleaseDate" },
+                values: new object[] { new Guid("ef2d234e-e70f-400b-850a-2d460129e563"), new Guid("e6ac0412-b8d0-43ce-8d3a-b3d80f70db75"), new Guid("ccf277b7-b189-448a-9468-70105aaa7fc8"), false, false, "The Legend of Zelda - Majora's Mask 3D", new DateTime(2015, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "PortFeature",
-                columns: new[] { "PortFeatureId", "Description", "Feature", "FeatureTypeId", "GameId", "GamePortId" },
+                columns: new[] { "Id", "Description", "Feature", "FeatureTypeId", "GamePortId" },
                 values: new object[,]
                 {
-                    { new Guid("422b4e25-42d3-466a-9f7e-c9fda861e4cc"), "Swimming speed while wearing the Zora mask is automatically fast without needing to use magic", "Fast Zora Swimming", 1, new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b") },
-                    { new Guid("46b805cf-01ad-4ad8-85b1-4958fcd93f33"), "The original release of Majora's Mask capped out at a framerate of 20 FPS. Little hard on the eyes at first", "20 FPS", 3, new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new Guid("4a8a9505-c744-4dcb-a822-e43fe04c273b") },
-                    { new Guid("cb4e8da2-c16b-4d3e-992f-1d75e2805205"), "The 3DS port runs a bit smoother at 30 FPS, which is easier on the eyes", "30 FPS", 1, new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e") },
-                    { new Guid("051cbbd5-3dc9-44b8-88a1-30c372d1f975"), "Some purists may complain that this takes away from the original, the Song of Double Time can take you to a specific time of the current day you are on.", "Improved Song of Double Time", 2, new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e") },
-                    { new Guid("4a3d4cfb-c5b2-4e27-bfdf-4b9024413907"), "Without using Magic, the Zora swimming speed will seem like you are crawling through the ocean. Fan patches have been made to patch this though", "Slow Zora Swimming", 3, new Guid("50eb6f62-a159-42ee-ab59-589f38daf243"), new Guid("f6d9e9f1-b512-42a0-8213-247b1080689e") }
+                    { new Guid("bbb679fc-0941-4b76-b596-7c12420c4896"), "Swimming speed while wearing the Zora mask is automatically fast without needing to use magic", "Fast Zora Swimming", 1, new Guid("fdb1993e-bca6-4961-9426-18a8f680c730") },
+                    { new Guid("5fd825af-56cf-4343-81ee-f4372f2c38a1"), "The original release of Majora's Mask capped out at a framerate of 20 FPS. Little hard on the eyes at first", "20 FPS", 3, new Guid("fdb1993e-bca6-4961-9426-18a8f680c730") },
+                    { new Guid("0c66e103-39d1-4c84-87d8-7cb71d597ada"), "The 3DS port runs a bit smoother at 30 FPS, which is easier on the eyes", "30 FPS", 1, new Guid("ef2d234e-e70f-400b-850a-2d460129e563") },
+                    { new Guid("7b46ba9c-52e2-4ec8-a971-14e7bb8c22f7"), "Some purists may complain that this takes away from the original, the Song of Double Time can take you to a specific time of the current day you are on.", "Improved Song of Double Time", 2, new Guid("ef2d234e-e70f-400b-850a-2d460129e563") },
+                    { new Guid("e43a0874-843f-4a7b-a5b8-62aa06cb7770"), "Without using Magic, the Zora swimming speed will seem like you are crawling through the ocean. Fan patches have been made to patch this though", "Slow Zora Swimming", 3, new Guid("ef2d234e-e70f-400b-850a-2d460129e563") }
                 });
 
             migrationBuilder.CreateIndex(
@@ -231,11 +224,6 @@ namespace DefinitiveEdition.Api.Migrations
                 name: "IX_PortFeature_FeatureTypeId",
                 table: "PortFeature",
                 column: "FeatureTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PortFeature_GameId",
-                table: "PortFeature",
-                column: "GameId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PortFeature_GamePortId",

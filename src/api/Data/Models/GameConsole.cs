@@ -4,7 +4,7 @@ namespace DefinitiveEdition.Api.Data.Models
 {
     public class GameConsole
     {
-        public Guid GameConsoleId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime InitialReleaseDate { get; set; }
 

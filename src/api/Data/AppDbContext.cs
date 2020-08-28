@@ -28,7 +28,7 @@ namespace DefinitiveEdition.Api.Data
             */
             var zeldaSeries = new Series
             {                    
-                SeriesId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "The Legend of Zelda",
                 InitialReleaseDate = new DateTime(1986, 2, 21),
                 Description = "Save the Princess and Hyrule from Ganon sometimes. Fix me up later...."
@@ -36,39 +36,39 @@ namespace DefinitiveEdition.Api.Data
 
             var featureTypes = new List<FeatureType>()
             {
-                new FeatureType {FeatureTypeId = 1, Name = "Pro"},
-                new FeatureType {FeatureTypeId = 2, Name = "Neutral"},
-                new FeatureType {FeatureTypeId = 3, Name = "Con"}
+                new FeatureType {Id = 1, Name = "Pro"},
+                new FeatureType {Id = 2, Name = "Neutral"},
+                new FeatureType {Id = 3, Name = "Con"}
             };
 
             var nintendo = new ConsoleDeveloper
             {
-                ConsoleDeveloperId = 1,
+                Id = 1,
                 Name = "Nintendo"
             };
 
             var n64 = new GameConsole
             {
-                GameConsoleId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "64",
                 InitialReleaseDate = new DateTime(1996, 6, 23),
-                ConsoleDeveloperId = nintendo.ConsoleDeveloperId
+                ConsoleDeveloperId = nintendo.Id
             };
 
             var n3ds = new GameConsole
             {
-                GameConsoleId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "3DS",
                 InitialReleaseDate = new DateTime(2011, 2, 26),
-                ConsoleDeveloperId = nintendo.ConsoleDeveloperId
+                ConsoleDeveloperId = nintendo.Id
             };
 
             var majorasMaskGame = new Game
             {
-                GameId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = "The Legend of Zelda - Majora's Mask",
                 InitialReleaseDate = new DateTime (2000, 4, 27),
-                SeriesId = zeldaSeries.SeriesId
+                SeriesId = zeldaSeries.Id
             };
 
             var mm3dsGuid = Guid.NewGuid();
@@ -78,21 +78,21 @@ namespace DefinitiveEdition.Api.Data
             {
                 new GamePort
                 {
-                    GamePortId = mmn64Guid,
+                    Id = mmn64Guid,
                     IsSameName = true,
                     IsInitialRelease = true,
-                    GameId = majorasMaskGame.GameId,
-                    GameConsoleId = n64.GameConsoleId
+                    GameId = majorasMaskGame.Id,
+                    GameConsoleId = n64.Id
                 },
                 new GamePort
                 {
-                    GamePortId = mm3dsGuid,
+                    Id = mm3dsGuid,
                     IsSameName = false,
                     PortName = "The Legend of Zelda - Majora's Mask 3D",
                     IsInitialRelease = false,
                     ReleaseDate = new DateTime(2015, 2, 13),
-                    GameId = majorasMaskGame.GameId,
-                    GameConsoleId = n3ds.GameConsoleId,
+                    GameId = majorasMaskGame.Id,
+                    GameConsoleId = n3ds.Id,
                 }
             };
 
@@ -101,48 +101,43 @@ namespace DefinitiveEdition.Api.Data
                 //N64
                 new PortFeature
                 {
-                    PortFeatureId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Feature = "Fast Zora Swimming",
                     Description = "Swimming speed while wearing the Zora mask is automatically fast without needing to use magic",
                     FeatureTypeId = 1,
-                    GameId = majorasMaskGame.GameId,
                     GamePortId = mmn64Guid
                 },
                 new PortFeature
                 {
-                    PortFeatureId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Feature = "20 FPS",
                     Description = "The original release of Majora's Mask capped out at a framerate of 20 FPS. Little hard on the eyes at first",
                     FeatureTypeId = 3,
-                    GameId = majorasMaskGame.GameId,
                     GamePortId = mmn64Guid
                 },
                 //3DS
                 new PortFeature
                 {
-                    PortFeatureId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Feature = "30 FPS",
                     Description = "The 3DS port runs a bit smoother at 30 FPS, which is easier on the eyes",
                     FeatureTypeId = 1,
-                    GameId = majorasMaskGame.GameId,
                     GamePortId = mm3dsGuid
                 },
                 new PortFeature
                 {
-                    PortFeatureId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Feature = "Improved Song of Double Time",
                     Description = "Some purists may complain that this takes away from the original, the Song of Double Time can take you to a specific time of the current day you are on.",
                     FeatureTypeId = 2,
-                    GameId = majorasMaskGame.GameId,
                     GamePortId = mm3dsGuid
                 },
                 new PortFeature
                 {
-                    PortFeatureId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     Feature = "Slow Zora Swimming",
                     Description = "Without using Magic, the Zora swimming speed will seem like you are crawling through the ocean. Fan patches have been made to patch this though",
                     FeatureTypeId = 3,
-                    GameId = majorasMaskGame.GameId,
                     GamePortId = mm3dsGuid
                 }
             };

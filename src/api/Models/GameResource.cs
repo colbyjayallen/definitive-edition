@@ -1,10 +1,10 @@
 using System;
+using DefinitiveEdition.Api.Data.Models;
 
-namespace DefinitiveEdition.Api.Data.Models
+namespace DefinitiveEdition.Api.Models
 {
-    public class Game
+    public class GameResource
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime InitialReleaseDate { get; set; }
 
